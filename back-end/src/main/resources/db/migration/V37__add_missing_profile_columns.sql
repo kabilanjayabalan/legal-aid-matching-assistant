@@ -1,0 +1,14 @@
+-- Add missing columns to lawyer_profiles table
+ALTER TABLE lawyer_profiles
+ADD COLUMN IF NOT EXISTS name VARCHAR(255),
+ADD COLUMN IF NOT EXISTS expertise TEXT,
+ADD COLUMN IF NOT EXISTS location VARCHAR(255),
+ADD COLUMN IF NOT EXISTS contact_info TEXT,
+ADD COLUMN IF NOT EXISTS verified BOOLEAN DEFAULT FALSE;
+
+-- Add missing columns to ngo_profiles table
+ALTER TABLE ngo_profiles
+ADD COLUMN IF NOT EXISTS organization VARCHAR(255),
+ADD COLUMN IF NOT EXISTS contact_info TEXT,
+ADD COLUMN IF NOT EXISTS location VARCHAR(255),
+ADD COLUMN IF NOT EXISTS verified BOOLEAN DEFAULT FALSE;

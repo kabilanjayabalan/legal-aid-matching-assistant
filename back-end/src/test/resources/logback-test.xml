@@ -1,0 +1,17 @@
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Disable DB_LOG appender for tests to avoid database connection issues -->
+    <!-- Tests don't need to persist logs to database -->
+
+    <logger name="com.legalaid" level="DEBUG"/>
+    <logger name="org.springframework" level="INFO"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

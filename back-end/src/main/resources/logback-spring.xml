@@ -1,0 +1,23 @@
+<configuration scan="true">
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Custom DB appender that stores selected log events in the "logs" table -->
+    <appender name="DB_LOG" class="com.legalaid.backend.config.DBLogAppender">
+        <url>jdbc:postgresql://localhost:5432/legal_aid_db</url>
+        <user>${DB_USERNAME}</user>
+        <password>${DB_PASSWORD}</password>
+    </appender>
+
+    <logger name="com.legalaid" level="DEBUG"/>
+    <logger name="org.springframework" level="INFO"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DB_LOG"/>
+    </root>
+</configuration>
+
