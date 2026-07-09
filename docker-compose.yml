@@ -53,6 +53,8 @@ services:
     build:
       context: ./front-end/legal-aid-matching-platform
       dockerfile: Dockerfile
+      args:
+        REACT_APP_API_URL: ${REACT_APP_API_URL:-/api}
     container_name: legal-aid-frontend
     restart: unless-stopped
     depends_on:

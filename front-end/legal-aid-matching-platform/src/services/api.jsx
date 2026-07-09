@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: process.env.REACT_APP_API_URL !== undefined ? process.env.REACT_APP_API_URL : "http://localhost:8080",
 });
 
 // ========= Concurrency Queue Logic =========
@@ -55,7 +55,7 @@ const startSilentRefresh = (token) => {
 
     try {
       // console.log("Triggering silent refresh...");
-      const res = await axios.post("http://localhost:8080/auth/refresh-token", 
+      const res = await axios.post((process.env.REACT_APP_API_URL !== undefined ? process.env.REACT_APP_API_URL : "http://localhost:8080") + "/auth/refresh-token", 
         { refreshToken: refreshToken }
       );
 
@@ -137,8 +137,8 @@ api.interceptors.response.use(
       }
 
       try {
-        const res = await axios.post("http://localhost:8080/auth/refresh-token", 
-          { refreshToken: refreshToken }
+      const res = await axios.post((process.env.REACT_APP_API_URL !== undefined ? process.env.REACT_APP_API_URL : "http://localhost:8080") + "/auth/refresh-token", 
+        { refreshToken: refreshToken }
         );
 
         const newAccessToken = res.data.accessToken;
