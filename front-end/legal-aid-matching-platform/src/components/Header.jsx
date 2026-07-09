@@ -117,6 +117,25 @@ export default function Header({ onMenuClick }) {
 
         {/* RIGHT */}
         <div className="flex items-center gap-4">
+          {/* Ask AI Button */}
+          {profile && (
+            <button
+              onClick={() => {
+                const role = profile.role.toLowerCase();
+                if (role === "admin") {
+                  navigate(`/dashboard/admin/ai`);
+                } else {
+                  navigate(`/dashboard/${role}/aichat`);
+                }
+              }}
+              className="hidden sm:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full font-medium transition shadow-sm hover:shadow-md"
+              title="Ask AI Assistant"
+            >
+              <span className="text-yellow-300 font-bold">✨</span>
+              Ask AI
+            </button>
+          )}
+
           {/* Notification Bell */}
           <div className="relative">
             <button

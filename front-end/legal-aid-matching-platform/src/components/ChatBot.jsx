@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import chatbotIcon from "../Images/Ai chat bot.png";
+import api from "../services/api";
 
 export default function ChatBot() {
   const [open, setOpen] = useState(false);
@@ -9,6 +11,10 @@ export default function ChatBot() {
 
   const messagesEndRef = useRef(null);
   const chatRef = useRef(null);
+  const location = useLocation();
+
+  // Hide the global widget if we are on a dedicated AI page
+  const isAiPage = location.pathname.includes("/aichat") || location.pathname.includes("/dashboard/admin/ai");
 
   // Auto scroll
   const scrollToBottom = () => {
@@ -44,15 +50,8 @@ export default function ChatBot() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8080/api/ai/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ question: userMessage.text }),
-      });
-
-      const data = await res.json();
+      const res = await api.post("/api/ai/chat", { question: userMessage.text });
+      const data = res.data;
 
       const botMessage = {
         sender: "bot",
@@ -73,6 +72,10 @@ export default function ChatBot() {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") sendMessage();
   };
+
+  if (isAiPage) {
+    return null;
+  }
 
   return (
     <>

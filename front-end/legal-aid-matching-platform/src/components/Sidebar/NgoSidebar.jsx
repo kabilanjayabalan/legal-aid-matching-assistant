@@ -24,6 +24,20 @@ export default function NGOSidebar() {
           </NavLink>
         </li>
 
+        {/* Ask AI */}
+        <li >
+          <NavLink
+            to="/dashboard/ngo/aichat"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-3 py-2 rounded-lg font-medium
+              ${isActive ? "bg-blue-950 text-yellow-300" : "text-blue-600 hover:bg-blue-50"}`
+            }
+          >
+            <span className="text-lg">✨</span>
+            Ask AI
+          </NavLink>
+        </li>
+
         {/* Case Intake */}
         <li >
           <NavLink

@@ -41,6 +41,8 @@ const LawyerAppointments = lazy(() => import("./components/RoleContent/lawyer/Ap
 const NGOAppointments = lazy(() => import("./components/RoleContent/ngo/Appointments"));
 const NotificationsPage = lazy(() => import("./components/NotificationsPage"));
 const CaseOperations = lazy(() => import("./components/RoleContent/admin/CaseOperations"));
+const AiChatPage = lazy(() => import("./components/common/AiChatPage"));
+const AdminAiDashboard = lazy(() => import("./components/RoleContent/admin/AdminAiDashboard"));
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -75,6 +77,7 @@ function AnimatedRoutes() {
           <Route path="systemmonitoring" element={<SystemMonitoring />} />
           <Route path="directorysearch" element={<DirectorySearch />} />
           <Route path="notifications" element={<NotificationsPage />} />
+          <Route path="ai" element={<AdminAiDashboard />} />
         </Route>
 
         <Route
@@ -93,6 +96,7 @@ function AnimatedRoutes() {
           <Route path="match-requests" element={<MatchRequests />} />
           <Route path="appointments" element={<LawyerAppointments />} />
           <Route path="notifications" element={<NotificationsPage />} />
+          <Route path="aichat" element={<AiChatPage />} />
         </Route>
 
         <Route
@@ -112,6 +116,7 @@ function AnimatedRoutes() {
           <Route path="securechat" element={<LawyerSecureChat />} />
           <Route path="appointments" element={<NGOAppointments />} />
           <Route path="notifications" element={<NotificationsPage />} />
+          <Route path="aichat" element={<AiChatPage />} />
         </Route>
 
         <Route
@@ -133,6 +138,7 @@ function AnimatedRoutes() {
           <Route path="saved" element={<SavedProfiles />} />
           <Route path="appointments" element={<Appointments />} />
           <Route path="notifications" element={<NotificationsPage />} />
+          <Route path="aichat" element={<AiChatPage />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
@@ -147,8 +153,8 @@ function App() {
       <Router>
         <MaintenanceBanner />
         <AnimatedRoutes />
+        <ChatBot />
       </Router>
-      <ChatBot />
     </SavedProfilesProvider>
   );
 }
