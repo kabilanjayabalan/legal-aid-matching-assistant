@@ -35,13 +35,17 @@ public class GroqAiService {
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.setBearerAuth(groqApiKey);
 
-            Map<String, Object> message = new HashMap<>();
-            message.put("role", "user");
-            message.put("content", prompt);
+            Map<String, Object> systemMessage = new HashMap<>();
+            systemMessage.put("role", "system");
+            systemMessage.put("content", "You are a legal aid assistant. You must ONLY reply to questions and topics related to legal aid, justice, law, general news related to law & justice, and rules and regulations of law. If a user asks about anything else, you must politely decline to answer and state that you can only assist with legal and justice-related matters.");
+
+            Map<String, Object> userMessage = new HashMap<>();
+            userMessage.put("role", "user");
+            userMessage.put("content", prompt);
 
             Map<String, Object> requestBodyMap = new HashMap<>();
             requestBodyMap.put("model", "llama-3.1-8b-instant"); // Using a popular Groq model
-            requestBodyMap.put("messages", List.of(message));
+            requestBodyMap.put("messages", List.of(systemMessage, userMessage));
 
             HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBodyMap, headers);
 
