@@ -31,3 +31,15 @@ target/
 *.iml
 .vscode/
 application.properties
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Node modules
+node_modules/
+npm-debug.log*
+
+# Logs
+logs/
