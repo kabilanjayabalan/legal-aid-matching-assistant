@@ -11,7 +11,10 @@ import com.legalaid.backend.model.SystemSettings;
 @Repository
 public interface SystemSettingsRepository extends JpaRepository<SystemSettings, Long> {
 
-    @Query("SELECT s FROM SystemSettings s ORDER BY s.id ASC")
-    Optional<SystemSettings> getSettings();
+    Optional<SystemSettings> findFirstByOrderByIdAsc();
+    
+    default Optional<SystemSettings> getSettings() {
+        return findFirstByOrderByIdAsc();
+    }
 }
 
