@@ -8,8 +8,8 @@
     <!-- Custom DB appender that stores selected log events in the "logs" table -->
     <appender name="DB_LOG" class="com.legalaid.backend.config.DBLogAppender">
         <url>${SPRING_DATASOURCE_URL:-jdbc:postgresql://localhost:5432/legal_aid_matching_db}</url>
-        <user>${DB_USERNAME:-postgres}</user>
-        <password>${DB_PASSWORD:-postgres}</password>
+        <user>${SPRING_DATASOURCE_USERNAME:-postgres}</user>
+        <password>${SPRING_DATASOURCE_PASSWORD:-postgres}</password>
     </appender>
 
     <logger name="com.legalaid" level="DEBUG"/>
