@@ -9,7 +9,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useEffect } from "react";
 
 const OAUTH_URL =
-  process.env.REACT_APP_API_BASE?.replace(/\/$/, "") ||
+  process.env.REACT_APP_API_URL?.replace(/\/$/, "") ||
   "http://localhost:8080";
 
 export default function Signup() {
