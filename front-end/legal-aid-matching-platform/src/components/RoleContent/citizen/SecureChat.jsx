@@ -369,7 +369,9 @@ export default function SecureChat() {
     const token = sessionStorage.getItem("accessToken");
 
     const client = new Client({
-      brokerURL: "ws://localhost:8080/ws-chat", // ✅ native WebSocket
+      brokerURL: process.env.REACT_APP_API_URL 
+        ? process.env.REACT_APP_API_URL.replace(/^http/, 'ws').replace(/\/$/, '') + '/ws-chat'
+        : "ws://localhost:8080/ws-chat", // ✅ native WebSocket
       connectHeaders: token
         ? { Authorization: `Bearer ${token}` }
         : {},

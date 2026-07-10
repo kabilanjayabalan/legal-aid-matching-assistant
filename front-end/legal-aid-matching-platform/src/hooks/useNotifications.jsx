@@ -17,7 +17,9 @@ export const useNotifications = (userId) => {
     const token = sessionStorage.getItem('accessToken');
 
     const client = new Client({
-      brokerURL: 'ws://localhost:8080/ws-notifications',
+      brokerURL: process.env.REACT_APP_API_URL 
+        ? process.env.REACT_APP_API_URL.replace(/^http/, 'ws').replace(/\/$/, '') + '/ws-notifications'
+        : 'ws://localhost:8080/ws-notifications',
       connectHeaders: token
         ? { Authorization: `Bearer ${token}` }
         : {},
