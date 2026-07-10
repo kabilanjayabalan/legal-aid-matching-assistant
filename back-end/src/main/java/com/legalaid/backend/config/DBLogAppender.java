@@ -72,6 +72,21 @@ public class DBLogAppender extends AppenderBase<ILoggingEvent> {
             // Ensure PostgreSQL driver is loaded
             Class.forName("org.postgresql.Driver");
 
+            // Initialize logs table if it doesn't exist
+            try (Connection connection = DriverManager.getConnection(url, user, password);
+                 PreparedStatement stmt = connection.prepareStatement(
+                         "CREATE TABLE IF NOT EXISTS logs (" +
+                         "id SERIAL PRIMARY KEY, " +
+                         "log_timestamp TIMESTAMP, " +
+                         "level VARCHAR(10), " +
+                         "logger VARCHAR(255), " +
+                         "message TEXT)"
+                 )) {
+                stmt.execute();
+            } catch (Exception e) {
+                addWarn("DBLogAppender: Could not create logs table automatically. Make sure it exists.");
+            }
+
             // Create virtual thread executor
             virtualThreadExecutor = Executors.newVirtualThreadPerTaskExecutor();
 
