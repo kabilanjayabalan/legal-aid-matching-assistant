@@ -14,4 +14,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/ws-chat/**")
                 .addResourceLocations("classpath:/META-INF/resources/");
     }
+
+    @Override
+    public void addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:3000", "https://legal-aid-matching-assistant.vercel.app")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
+    }
 }
