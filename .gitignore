@@ -26,11 +26,10 @@ hs_err_pid*
 target/
 .mvn/
 
-# IDE specific
+### IDE specific
 .idea/
 *.iml
 .vscode/
-application.properties
 
 # Environment variables
 .env
