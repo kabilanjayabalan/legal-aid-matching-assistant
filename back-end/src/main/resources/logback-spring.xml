@@ -5,11 +5,15 @@
         </encoder>
     </appender>
 
+    <springProperty scope="context" name="springDatasourceUrl" source="spring.datasource.url"/>
+    <springProperty scope="context" name="springDatasourceUsername" source="spring.datasource.username"/>
+    <springProperty scope="context" name="springDatasourcePassword" source="spring.datasource.password"/>
+
     <!-- Custom DB appender that stores selected log events in the "logs" table -->
     <appender name="DB_LOG" class="com.legalaid.backend.config.DBLogAppender">
-        <url>jdbc:postgresql://localhost:5432/legal_aid_db</url>
-        <user>${DB_USERNAME}</user>
-        <password>${DB_PASSWORD}</password>
+        <url>${springDatasourceUrl:-jdbc:postgresql://localhost:5432/legal_aid_matching_db}</url>
+        <user>${springDatasourceUsername:-postgres}</user>
+        <password>${springDatasourcePassword:-postgres}</password>
     </appender>
 
     <logger name="com.legalaid" level="DEBUG"/>
