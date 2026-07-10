@@ -125,7 +125,7 @@
                     .cors(cors -> cors.configurationSource(request -> {
                         log.debug("Configuring CORS settings");
                         CorsConfiguration config = new CorsConfiguration();
-                        config.setAllowedOriginPatterns(List.of("http://localhost:3000", "https://*.vercel.app"));
+                        config.setAllowedOrigins(List.of("http://localhost:3000", "https://legal-aid-matching-assistant.vercel.app"));
                         config.setAllowCredentials(true);
                         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                         config.setAllowedHeaders(List.of("*"));
